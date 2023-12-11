@@ -1,23 +1,20 @@
 class Solution {
     public int findSpecialInteger(int[] arr) {
         
-        int size = arr.length;
-        if(size == 1){
-            return 1;
+      int size = arr.length;
+        int qtr = size / 4;
+        int cnt = 1;
+        int p = arr[0];
+        for (int i = 1 ; i < arr.length ; i++) {
+
+            if ( p == arr[i]) cnt++;
+            else cnt = 1;
+            
+            if (cnt > qtr) return arr[i];
+            
+            p = arr[i];
         }
-        int number = (size * 25)/100;
-        
-        for(int i=0;i<size-1;i++){
-            int count =1;
-            for(int j =i+1;j<size;j++){
-                if(arr[i]==arr[j]){
-                    count++;
-                }
-                if(count> number){
-                    return arr[j];
-                }
-            }
-        }
-        return 0;
+
+        return p;
     }
 }
